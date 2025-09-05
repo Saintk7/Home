@@ -42,6 +42,7 @@
     .hero h1{margin:0 0 8px;font-weight:600;letter-spacing:.2px}
     .hero p{margin:0;color:var(--muted)}
 
+    /* Spotlight banner */
     .spotlight{
       margin:18px 0 6px; padding:14px 16px; border:1px solid var(--border);
       background:linear-gradient(180deg,var(--panel),var(--panel-2));
@@ -53,28 +54,36 @@
     .spotlight a:hover{color:#e7ecf2; text-decoration:underline}
     .close-spot{margin-left:auto;background:transparent;border:0;color:var(--muted);cursor:pointer}
 
+    /* Tabs */
     .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:24px 0}
     .tab{border:1px solid var(--border);background:var(--panel);border-radius:999px;padding:8px 14px;color:var(--muted);cursor:pointer}
     .tab[aria-selected="true"]{color:var(--text);background:var(--panel-2);border-color:#243040}
 
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    @media (max-width:960px){.grid{grid-template-columns:repeat(6,1fr)}}
-    @media (max-width:640px){.grid{grid-template-columns:repeat(2,1fr)}}
-    .panel{grid-column:span 12;background:var(--panel);border:1px solid var(--border);
-      border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 8px}
-    .panel h2{margin:0 0 12px;font-size:18px;font-weight:600;border-bottom:1px solid var(--border);padding-bottom:10px}
+    /* Sections & cards */
+    .section-panel{
+      background:var(--panel);border:1px solid var(--border);
+      border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 8px;margin-bottom:16px
+    }
+    .section-panel h2{margin:0 0 12px;font-size:18px;font-weight:600;border-bottom:1px solid var(--border);padding-bottom:10px}
+
     .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
     @media (max-width:720px){.list{grid-template-columns:1fr}}
-    .item{position:relative;border:1px solid var(--border);background:linear-gradient(180deg,var(--panel),var(--panel-2));
-      padding:14px;border-radius:12px;transition:transform .12s ease, border-color .12s ease}
+    .item{
+      border:1px solid var(--border);
+      background:linear-gradient(180deg,var(--panel),var(--panel-2));
+      padding:14px;border-radius:12px;transition:transform .12s ease, border-color .12s ease
+    }
     .item:hover{transform:translateY(-2px);border-color:#263244}
     .title{font-weight:600;text-decoration:none}
     .desc{color:var(--muted);font-size:.94rem;margin-top:4px}
+    /* IMPORTANT: prevent weird narrow word-wrapping */
+    .item, .title, .desc { word-break: normal; overflow-wrap: anywhere; }
 
     footer{margin:40px 0 24px;color:var(--muted);border-top:1px solid var(--border);padding-top:16px}
     footer a{color:var(--muted);text-decoration:none}
     footer a:hover{color:var(--text)}
 
+    /* Cookie bar */
     .cookie-bar{
       position:fixed;left:16px;right:16px;bottom:16px;z-index:50;
       background:linear-gradient(180deg,var(--panel),var(--panel-2));
@@ -87,7 +96,7 @@
     .btn.primary{background:linear-gradient(135deg,var(--brand1),var(--brand2));border-color:transparent}
   </style>
 
-  <!-- AdSense global (add your client id, then uncomment) -->
+  <!-- AdSense global (add your client id, then uncomment to enable ads & cookie notice) -->
   <!--
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
   -->
@@ -114,6 +123,7 @@
       <h1 id="intro">Curated AI tools for real work</h1>
       <p>Clear, fast, and distraction-free. Only the tools that actually help.</p>
 
+      <!-- Spotlight: Apertus (PublicAI) -->
       <div class="spotlight" role="note" id="spotlight">
         <div class="flag" aria-hidden="true">🇨🇭</div>
         <div>
@@ -131,39 +141,81 @@
       </div>
     </section>
 
-    <!-- Example Ad slot -->
-    <div class="panel" style="padding:8px 12px;margin-bottom:16px" aria-label="Ad">
+    <!-- Ad slot (top) -->
+    <div class="section-panel" aria-label="Ad">
       <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXX" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
       <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
       <small style="color:var(--muted)">Ad slot (top)</small>
     </div>
 
     <!-- TEXT -->
-    <section id="text" class="grid panel" role="tabpanel" aria-labelledby="tab-text">
+    <section id="text" class="section-panel" role="tabpanel" aria-labelledby="tab-text">
       <h2 id="tab-text">Text tools</h2>
       <div class="list">
-        <article class="item"><a class="title" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><p class="desc">Assistant for brainstorming, drafting, research and more.</p></article>
-        <article class="item"><a class="title" href="https://claude.ai" target="_blank" rel="noopener">Claude</a><p class="desc">Strong on long-form structure and context.</p></article>
+        <article class="item"><a class="title" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><p class="desc">Assistant for brainstorming, drafting, research and more (OpenAI).</p></article>
+        <article class="item"><a class="title" href="https://claude.ai" target="_blank" rel="noopener">Claude</a><p class="desc">Strong on long-form structure and context (Anthropic).</p></article>
         <article class="item"><a class="title" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a><p class="desc">Google’s multimodal AI for summaries and Q&A.</p></article>
-        <article class="item"><a class="title" href="https://grammarly.com" target="_blank" rel="noopener">Grammarly</a><p class="desc">Grammar, tone and clarity suggestions.</p></article>
+        <article class="item"><a class="title" href="https://grammarly.com" target="_blank" rel="noopener">Grammarly</a><p class="desc">Grammar, tone and clarity suggestions in real time.</p></article>
         <article class="item"><a class="title" href="https://deepl.com/translator" target="_blank" rel="noopener">DeepL</a><p class="desc">High-quality translations with natural phrasing.</p></article>
         <article class="item"><a class="title" href="https://publicai.co/" target="_blank" rel="noopener">Apertus (PublicAI)</a><p class="desc">Open-source LLM released by a Swiss public institution.</p></article>
       </div>
     </section>
 
-    <!-- Other categories (Image, Video, Productivity) stay same as before ... -->
+    <!-- IMAGE -->
+    <section id="image" class="section-panel" role="tabpanel" hidden aria-labelledby="tab-image">
+      <h2 id="tab-image">Image tools</h2>
+      <div class="list">
+        <article class="item"><a class="title" href="https://www.midjourney.com" target="_blank" rel="noopener">Midjourney</a><p class="desc">Stylish image generation via Discord.</p></article>
+        <article class="item"><a class="title" href="https://openai.com/dall-e-3" target="_blank" rel="noopener">DALL·E 3</a><p class="desc">Detailed, prompt-faithful images.</p></article>
+        <article class="item"><a class="title" href="https://www.adobe.com/sensei/generative-ai/firefly.html" target="_blank" rel="noopener">Adobe Firefly</a><p class="desc">Generative features across Creative Cloud.</p></article>
+        <article class="item"><a class="title" href="https://www.remove.bg" target="_blank" rel="noopener">Remove.bg</a><p class="desc">Fast background removal.</p></article>
+        <article class="item"><a class="title" href="https://www.canva.com/ai-tools/" target="_blank" rel="noopener">Canva AI</a><p class="desc">Browser-based design with AI create & edit.</p></article>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section id="video" class="section-panel" role="tabpanel" hidden aria-labelledby="tab-video">
+      <h2 id="tab-video">Video tools</h2>
+      <div class="list">
+        <article class="item"><a class="title" href="https://www.synthesia.io" target="_blank" rel="noopener">Synthesia</a><p class="desc">Avatar videos generated from scripts.</p></article>
+        <article class="item"><a class="title" href="https://fliki.ai" target="_blank" rel="noopener">Fliki</a><p class="desc">Text-to-video with natural voices.</p></article>
+        <article class="item"><a class="title" href="https://www.murf.ai" target="_blank" rel="noopener">Murf AI</a><p class="desc">Voiceovers in multiple languages and styles.</p></article>
+        <article class="item"><a class="title" href="https://lumen5.com" target="_blank" rel="noopener">Lumen5</a><p class="desc">Turn blog posts into social videos.</p></article>
+        <article class="item"><a class="title" href="https://www.invideo.io" target="_blank" rel="noopener">InVideo</a><p class="desc">Template-driven editor for ads and posts.</p></article>
+      </div>
+    </section>
+
+    <!-- PRODUCTIVITY -->
+    <section id="productivity" class="section-panel" role="tabpanel" hidden aria-labelledby="tab-prod">
+      <h2 id="tab-prod">Productivity tools</h2>
+      <div class="list">
+        <article class="item"><a class="title" href="https://www.notion.so/product/ai" target="_blank" rel="noopener">Notion AI</a><p class="desc">Notes, tasks and docs with AI assistance.</p></article>
+        <article class="item"><a class="title" href="https://www.linguee.com" target="_blank" rel="noopener">Linguee</a><p class="desc">Translations with real-world context examples.</p></article>
+        <article class="item"><a class="title" href="https://otter.ai" target="_blank" rel="noopener">Otter.ai</a><p class="desc">Live transcription for meetings and interviews.</p></article>
+      </div>
+    </section>
+
+    <!-- Ad slot (bottom) -->
+    <div class="section-panel" aria-label="Ad">
+      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
+      <small style="color:var(--muted)">Ad slot (bottom)</small>
+    </div>
 
     <footer>
-      <div class="grid">
-        <div class="panel" style="grid-column:span 12;">
-          <small>© <span id="y"></span> SaintK7 · <a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></small>
-        </div>
-      </div>
+      <small>
+        © <span id="y"></span> SaintK7. All product names are trademarks of their respective owners.
+        · <a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a>
+      </small>
     </footer>
   </main>
 
+  <!-- Cookie notice -->
   <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie notice">
-    <p>This site uses cookies for Google AdSense. You can choose personalized or non-personalized ads. See our <a href="/privacy.html">Privacy Policy</a>.</p>
+    <p>
+      This site uses cookies for Google AdSense. You can choose personalized or non-personalized ads.
+      See our <a href="/privacy.html">Privacy Policy</a>.
+    </p>
     <div class="cookie-actions">
       <button class="btn" id="declineCookies">Decline (non-personalized)</button>
       <button class="btn primary" id="acceptCookies">Accept</button>
@@ -187,12 +239,12 @@
     // Year
     document.getElementById('y').textContent = new Date().getFullYear();
 
-    // Cookie consent
+    // Cookie consent (Accept / Decline npa=1)
     (function(){
       const hasAdSenseScript = !!document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]');
       const consentKey = 'cookieConsentAds';
       const bar = document.getElementById('cookieBar');
-      if (hasAdSenseScript && localStorage.getItem(consentKey) !== 'accepted' && localStorage.getItem(consentKey) !== 'declined') {
+      if (hasAdSenseScript && !['accepted','declined'].includes(localStorage.getItem(consentKey))) {
         bar.style.display = 'block';
         document.getElementById('acceptCookies').addEventListener('click', () => {
           localStorage.setItem(consentKey, 'accepted');
@@ -200,7 +252,7 @@
         });
         document.getElementById('declineCookies').addEventListener('click', () => {
           localStorage.setItem(consentKey, 'declined');
-          // set non-personalized ads flag
+          // Non-personalized ads
           window.adsbygoogle = window.adsbygoogle || [];
           window.adsbygoogle.requestNonPersonalizedAds = 1;
           bar.remove();
