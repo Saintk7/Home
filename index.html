@@ -1,90 +1,108 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AI Tool Directory – Text, Image, Video & Productivity</title>
-  <meta name="description" content="A curated directory of useful AI tools for text, image, video and everyday productivity. Fast, accessible, professional." />
+  <meta name="description" content="Kuratiertes Verzeichnis nützlicher AI-Tools für Text, Bild, Video und Produktivität. Schnell, übersichtlich, praxisgerecht." />
   <meta name="color-scheme" content="dark light" />
   <meta property="og:title" content="AI Tool Directory" />
   <meta property="og:description" content="Curated AI tools for real work: text, image, video and productivity." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://saintk7.com" />
-
+  <meta property="og:url" content="https://saintk7.com/" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root{
-      --bg:#0b0f14; --panel:#121821; --panel-2:#0f1520;
-      --text:#e7ecf2; --muted:#97a2b0; --border:#1d2632;
-      --accent:#33ffdd1a; --radius:14px; --shadow:0 6px 24px rgba(0,0,0,.35);
-      --brand1:#2b7cff; --brand2:#22d3ee;
+      --bg:#0b0f14; --panel:#0f1620; --panel-2:#0b1118;
+      --text:#e7ecf2; --muted:#9aa7b6; --border:#17202a;
+      --accent:#2b7cff; --accent-2:#22d3ee; --radius:12px; --shadow:0 8px 28px rgba(0,0,0,.45);
+      --glass: rgba(255,255,255,0.02);
     }
-    *,*::before,*::after{box-sizing:border-box}
+    *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:linear-gradient(180deg,#0b0f14 0%,#0d131b 100%);color:var(--text);
-      font:400 16px/1.6 "Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    body{margin:0; font-family:"Inter",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#07090b 0%,#0b0f14 100%); color:var(--text); -webkit-font-smoothing:antialiased;}
     a{color:inherit}
-    .container{max-width:1040px;margin:0 auto;padding:24px}
+    .container{max-width:1100px;margin:0 auto;padding:20px}
 
-    header{position:sticky;top:0;z-index:20;background:rgba(11,15,20,.7);
-      backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--border)}
-    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:600}
-    .mark{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,var(--brand1),var(--brand2));box-shadow:0 8px 20px rgba(58,160,255,.25)}
-    nav a{display:inline-block;padding:10px 12px;border-radius:10px;color:var(--muted);text-decoration:none}
-    nav a.active, nav a:hover{color:var(--text);background:var(--accent)}
+    /* skip link */
+    .skiplink{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skiplink:focus{left:8px;top:8px;width:auto;height:auto;padding:8px 12px;background:#fff;color:#000;border-radius:6px;z-index:9999}
 
-    .hero{padding:40px 0 8px}
-    .hero h1{margin:0 0 8px;font-weight:600;letter-spacing:.2px}
-    .hero p{margin:0;color:var(--muted)}
+    header{position:sticky;top:0;z-index:60;background:linear-gradient(180deg,rgba(11,15,20,.65),rgba(11,15,20,.35));backdrop-filter: blur(6px);border-bottom:1px solid var(--border)}
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:600}
+    .mark{width:34px;height:34px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 8px 30px rgba(59,130,246,.12)}
+    nav a{display:inline-block;padding:8px 10px;border-radius:8px;color:var(--muted);text-decoration:none;font-size:0.95rem}
+    nav a.active, nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
 
-    /* Spotlight banner */
-    .spotlight{margin:18px 0 6px;padding:14px 16px;border:1px solid var(--border);
-      background:linear-gradient(180deg,var(--panel),var(--panel-2));border-radius:12px;display:flex;align-items:flex-start;gap:12px}
-    .flag{font-size:20px;line-height:1}
+    .hero{padding:28px 0 10px}
+    .hero h1{margin:0 0 6px;font-size:1.6rem;letter-spacing:.2px}
+    .hero p{margin:0;color:var(--muted);font-size:0.98rem}
+
+    /* search */
+    .search-row{display:flex;gap:12px;margin-top:14px}
+    .search-input{flex:1;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--text);outline:none}
+    .search-btn{padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:#032338;font-weight:600;cursor:pointer}
+
+    .spotlight{margin:16px 0;padding:12px;border-radius:10px;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--border);display:flex;align-items:center;gap:12px}
     .spotlight a{color:#b9d6ff;text-decoration:none}
-    .spotlight a:hover{color:#e7ecf2;text-decoration:underline}
-    .close-spot{margin-left:auto;background:transparent;border:0;color:var(--muted);cursor:pointer}
+    .spotlight a:hover{text-decoration:underline}
 
-    /* Section panels & cards */
-    .section-panel{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px 18px 8px;margin-bottom:16px}
-    .section-panel h2{margin:0 0 12px;font-size:18px;font-weight:600;border-bottom:1px solid var(--border);padding-bottom:10px}
-    .list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-    @media (max-width:720px){.list{grid-template-columns:1fr}}
-    .item{border:1px solid var(--border);background:linear-gradient(180deg,var(--panel),var(--panel-2));padding:14px;border-radius:12px;transition:transform .12s ease,border-color .12s ease}
-    .item:hover{transform:translateY(-2px);border-color:#263244}
-    .title{font-weight:600;text-decoration:none}
-    .desc{color:var(--muted);font-size:.94rem;margin-top:4px}
-    .item,.title,.desc{word-break:normal;overflow-wrap:anywhere}
+    .section-panel{background:transparent;border-radius:var(--radius);padding:12px;margin:12px 0}
+    .controls{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+    .pill{padding:8px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--border);color:var(--muted);cursor:pointer}
+    .pill.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#012b3b;border-color:transparent;font-weight:600}
 
-    footer{margin:40px 0 24px;color:var(--muted);border-top:1px solid var(--border);padding-top:16px}
-    footer a{color:var(--muted);text-decoration:none}
-    footer a:hover{color:var(--text)}
+    .list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+    @media (max-width:900px){.list{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:560px){.list{grid-template-columns:1fr}}
+    .card{border-radius:12px;padding:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));border:1px solid var(--border);box-shadow:var(--shadow);transition:transform .12s,box-shadow .12s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5)}
+    .card h3{margin:0;font-size:1rem}
+    .card p{margin:8px 0 0;color:var(--muted);font-size:.94rem}
+    .meta{margin-top:10px;font-size:.86rem;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap}
 
-    /* Cookie bar */
-    .cookie-bar{position:fixed;left:16px;right:16px;bottom:16px;z-index:50;background:linear-gradient(180deg,var(--panel),var(--panel-2));
-      border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:none;box-shadow:var(--shadow)}
-    .cookie-bar p{margin:0;color:var(--muted)}
-    .cookie-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .btn{border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
-    .btn.primary{background:linear-gradient(135deg,var(--brand1),var(--brand2));border-color:transparent}
+    footer{margin:36px 0 20px;color:var(--muted);border-top:1px solid var(--border);padding-top:14px;text-align:center}
+
+    /* cookie bar */ 
+    .cookie-bar{position:fixed;left:12px;right:12px;bottom:12px;z-index:100;background:linear-gradient(180deg,var(--panel),var(--panel-2));border:1px solid var(--border);border-radius:12px;padding:12px 14px;display:none;box-shadow:var(--shadow)}
+    .cookie-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:10px}
+    .btn{padding:8px 12px;border-radius:10px;border:1px solid var(--border);background:transparent;color:var(--text);cursor:pointer}
+    .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:0;color:#022; font-weight:600}
+
+    /* focus outlines for accessibility */
+    a:focus, button:focus, .pill:focus, .search-input:focus{outline:3px solid rgba(59,130,246,.18);outline-offset:2px}
   </style>
 
-  <!-- AdSense global (add your client id, then uncomment to enable ads & cookie notice) -->
-  <!--
+  <!-- Optional: uncomment and set your AdSense client when ready
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
   -->
+
+  <!-- Structured Data: Organization + Website -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "url":"https://saintk7.com",
+    "name":"AI Tool Directory",
+    "description":"Curated AI tools for real work: text, image, video and productivity.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "SaintK7",
+      "url":"https://saintk7.com"
+    }
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <div class="container bar">
-      <div class="brand">
-        <span class="mark" aria-hidden="true"></span>
-        <span>AI Tool Directory</span>
-      </div>
-      <nav aria-label="Site">
+  <a class="skiplink" href="#main">Zum Inhalt springen</a>
+
+  <header role="banner">
+    <div class="container bar" role="navigation" aria-label="Hauptnavigation">
+      <div class="brand"><span class="mark" aria-hidden="true"></span><span>AI Tool Directory</span></div>
+      <nav aria-label="Site navigation">
         <a data-target="text" class="active" href="#text">Text</a>
         <a data-target="image" href="#image">Image</a>
         <a data-target="video" href="#video">Video</a>
@@ -94,81 +112,81 @@
     </div>
   </header>
 
-  <main class="container">
+  <main id="main" class="container" role="main">
     <section class="hero" aria-labelledby="intro">
       <h1 id="intro">Curated AI tools for real work</h1>
-      <p>Clear, fast, and distraction-free. Only the tools that actually help.</p>
+      <p>Clear, fast and distraction-free — only tools that actually help.</p>
 
-      <!-- Spotlight: Apertus (PublicAI) -->
-      <div class="spotlight" role="note" id="spotlight">
-        <div class="flag" aria-hidden="true">🇨🇭</div>
+      <div class="search-row" role="search" aria-label="Tool search">
+        <input id="search" class="search-input" placeholder="Search tools, e.g. 'text summarizer' or 'image generator'">
+        <button class="search-btn" id="searchBtn" aria-label="Search">Search</button>
+      </div>
+
+      <div class="spotlight" role="note" id="spotlight" aria-live="polite">
+        <div style="font-size:20px">🇨🇭</div>
         <div>
-          <strong><a href="https://publicai.co/" target="_blank" rel="noopener">Apertus (PublicAI)</a></strong><br />
-          <span>With love, from Switzerland — Apertus, the most powerful open-source language model ever released by a public institution.</span>
+          <strong><a href="https://publicai.co/" target="_blank" rel="noopener">Apertus (PublicAI)</a></strong>
+          <div style="color:var(--muted);margin-top:4px">Open-source LLM from a Swiss public institution — powerful & transparent.</div>
         </div>
-        <button class="close-spot" aria-label="Dismiss" onclick="document.getElementById('spotlight').remove();">✕</button>
       </div>
     </section>
 
-    <!-- Ad slot (top) -->
-    <div class="section-panel" aria-label="Ad">
-      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXX" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
-      <small style="color:var(--muted)">Ad slot (top)</small>
+    <!-- AD: top (only show after consent) -->
+    <div id="ad-top" class="section-panel" aria-label="Anzeige (oben)" style="display:none">
+      <!-- AdSense slot (paste ad code after consent) -->
+      <small style="color:var(--muted)">Anzeige (oben)</small>
     </div>
 
-    <!-- TEXT -->
-    <section id="text" class="section-panel" role="tabpanel" aria-labelledby="tab-text">
-      <h2 id="tab-text">Text tools</h2>
-      <div class="list">
-        <article class="item"><a class="title" href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a><p class="desc">Assistant for brainstorming, drafting, research and more (OpenAI).</p></article>
-        <article class="item"><a class="title" href="https://claude.ai" target="_blank" rel="noopener">Claude</a><p class="desc">Strong on long-form structure and context (Anthropic).</p></article>
-        <article class="item"><a class="title" href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a><p class="desc">Google’s multimodal AI for summaries and Q&A.</p></article>
-        <article class="item"><a class="title" href="https://grammarly.com" target="_blank" rel="noopener">Grammarly</a><p class="desc">Grammar, tone and clarity suggestions in real time.</p></article>
-        <article class="item"><a class="title" href="https://deepl.com/translator" target="_blank" rel="noopener">DeepL</a><p class="desc">High-quality translations with natural phrasing.</p></article>
-        <article class="item"><a class="title" href="https://publicai.co/" target="_blank" rel="noopener">Apertus (PublicAI)</a><p class="desc">Open-source LLM released by a Swiss public institution.</p></article>
+    <!-- controls -->
+    <div class="section-panel" aria-hidden="false">
+      <div class="controls" role="toolbar" aria-label="Filter tools">
+        <button class="pill active" data-filter="all">Alle</button>
+        <button class="pill" data-filter="text">Text</button>
+        <button class="pill" data-filter="image">Image</button>
+        <button class="pill" data-filter="video">Video</button>
+        <button class="pill" data-filter="productivity">Productivity</button>
+        <div style="margin-left:auto;color:var(--muted)">Gefundene Tools: <span id="count">0</span></div>
       </div>
-    </section>
 
-    <!-- IMAGE -->
-    <section id="image" class="section-panel" role="tabpanel" hidden aria-labelledby="tab-image">
-      <h2 id="tab-image">Image tools</h2>
-      <div class="list">
-        <article class="item"><a class="title" href="https://www.midjourney.com" target="_blank" rel="noopener">Midjourney</a><p class="desc">Stylish image generation via Discord.</p></article>
-        <article class="item"><a class="title" href="https://openai.com/dall-e-3" target="_blank" rel="noopener">DALL·E 3</a><p class="desc">Detailed, prompt-faithful images.</p></article>
-        <article class="item"><a class="title" href="https://www.adobe.com/sensei/generative-ai/firefly.html" target="_blank" rel="noopener">Adobe Firefly</a><p class="desc">Generative features across Creative Cloud.</p></article>
-        <article class="item"><a class="title" href="https://www.remove.bg" target="_blank" rel="noopener">Remove.bg</a><p class="desc">Fast background removal.</p></article>
-        <article class="item"><a class="title" href="https://www.canva.com/ai-tools/" target="_blank" rel="noopener">Canva AI</a><p class="desc">Browser-based design with AI create & edit.</p></article>
+      <div id="tools" class="list" aria-live="polite">
+        <!-- Example cards: add/edit these dynamically or by server rendering -->
+        <article class="card" data-type="text" data-title="ChatGPT">
+          <h3><a href="https://chat.openai.com" target="_blank" rel="noopener">ChatGPT</a></h3>
+          <p class="desc">Assistant for brainstorming, drafting, research and more (OpenAI).</p>
+          <div class="meta"><span>Text</span><span>Conversational</span></div>
+        </article>
+
+        <article class="card" data-type="text" data-title="Claude">
+          <h3><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></h3>
+          <p class="desc">Strong on long-form structure and context (Anthropic).</p>
+          <div class="meta"><span>Text</span><span>LLM</span></div>
+        </article>
+
+        <article class="card" data-type="image" data-title="Midjourney">
+          <h3><a href="https://www.midjourney.com" target="_blank" rel="noopener">Midjourney</a></h3>
+          <p class="desc">Stylish image generation via Discord.</p>
+          <div class="meta"><span>Image</span><span>Creative</span></div>
+        </article>
+
+        <article class="card" data-type="video" data-title="Synthesia">
+          <h3><a href="https://www.synthesia.io" target="_blank" rel="noopener">Synthesia</a></h3>
+          <p class="desc">Avatar videos generated from scripts.</p>
+          <div class="meta"><span>Video</span><span>Production</span></div>
+        </article>
+
+        <article class="card" data-type="productivity" data-title="Notion AI">
+          <h3><a href="https://www.notion.so/product/ai" target="_blank" rel="noopener">Notion AI</a></h3>
+          <p class="desc">Notes, tasks and docs with AI assistance.</p>
+          <div class="meta"><span>Productivity</span><span>Docs</span></div>
+        </article>
+
+        <!-- add more cards similarly -->
       </div>
-    </section>
+    </div>
 
-    <!-- VIDEO -->
-    <section id="video" class="section-panel" role="tabpanel" hidden aria-labelledby="tab-video">
-      <h2 id="tab-video">Video tools</h2>
-      <div class="list">
-        <article class="item"><a class="title" href="https://www.synthesia.io" target="_blank" rel="noopener">Synthesia</a><p class="desc">Avatar videos generated from scripts.</p></article>
-        <article class="item"><a class="title" href="https://fliki.ai" target="_blank" rel="noopener">Fliki</a><p class="desc">Text-to-video with natural voices.</p></article>
-        <article class="item"><a class="title" href="https://www.murf.ai" target="_blank" rel="noopener">Murf AI</a><p class="desc">Voiceovers in multiple languages and styles.</p></article>
-        <article class="item"><a class="title" href="https://lumen5.com" target="_blank" rel="noopener">Lumen5</a><p class="desc">Turn blog posts into social videos.</p></article>
-        <article class="item"><a class="title" href="https://www.invideo.io" target="_blank" rel="noopener">InVideo</a><p class="desc">Template-driven editor for ads and posts.</p></article>
-      </div>
-    </section>
-
-    <!-- PRODUCTIVITY -->
-    <section id="productivity" class="section-panel" role="tabpanel" hidden aria-labelledby="tab-prod">
-      <h2 id="tab-prod">Productivity tools</h2>
-      <div class="list">
-        <article class="item"><a class="title" href="https://www.notion.so/product/ai" target="_blank" rel="noopener">Notion AI</a><p class="desc">Notes, tasks and docs with AI assistance.</p></article>
-        <article class="item"><a class="title" href="https://www.linguee.com" target="_blank" rel="noopener">Linguee</a><p class="desc">Translations with real-world context examples.</p></article>
-        <article class="item"><a class="title" href="https://otter.ai" target="_blank" rel="noopener">Otter.ai</a><p class="desc">Live transcription for meetings and interviews.</p></article>
-      </div>
-    </section>
-
-    <!-- Ad slot (bottom) -->
-    <div class="section-panel" aria-label="Ad">
-      <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXX" data-ad-slot="1111111111" data-ad-format="auto" data-full-width-responsive="true"></ins>
-      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script> -->
-      <small style="color:var(--muted)">Ad slot (bottom)</small>
+    <!-- AD: bottom -->
+    <div id="ad-bottom" class="section-panel" aria-label="Anzeige (unten)" style="display:none">
+      <small style="color:var(--muted)">Anzeige (unten)</small>
     </div>
 
     <footer>
@@ -176,65 +194,89 @@
     </footer>
   </main>
 
-  <!-- Cookie notice -->
+  <!-- Cookie / Consent bar -->
   <div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Cookie notice">
-    <p>This site uses cookies for Google AdSense. You can choose personalized or non-personalized ads. See our <a href="/privacy.html">Privacy Policy</a>.</p>
-    <div class="cookie-actions">
-      <button class="btn" id="declineCookies">Decline (non-personalized)</button>
-      <button class="btn primary" id="acceptCookies">Accept</button>
+    <div style="display:flex;gap:12px;align-items:flex-start;flex-direction:column">
+      <div style="color:var(--muted)">Diese Seite verwendet Cookies zur Anzeige personalisierter Anzeigen (Google AdSense). Wähle bitte, ob du personalisierte oder nicht-personalisierte Anzeigen akzeptierst.</div>
+      <div class="cookie-actions">
+        <button class="btn" id="declineCookies">Nicht personalisierte Anzeigen</button>
+        <button class="btn primary" id="acceptCookies">Personalisierten Anzeigen zustimmen</button>
+      </div>
     </div>
   </div>
 
   <script>
-    // Panels show/hide logic
-    const panels = {
-      text: document.getElementById('text'),
-      image: document.getElementById('image'),
-      video: document.getElementById('video'),
-      productivity: document.getElementById('productivity')
-    };
-    function show(id){
-      Object.entries(panels).forEach(([key, el]) => { el.hidden = key !== id; });
-      // highlight nav
-      document.querySelectorAll('nav a[data-target]').forEach(a => {
-        a.classList.toggle('active', a.dataset.target === id);
-      });
-      history.replaceState(null, '', '#'+id);
-    }
-
-    // Wire top nav to panels
-    document.querySelectorAll('nav a[data-target]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        show(a.dataset.target);
-      });
-    });
-
-    // Initial: hash or default to text
-    const initial = location.hash.slice(1);
-    if (initial && panels[initial]) show(initial); else show('text');
-
-    // Footer year
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // Cookie consent (Accept / Decline npa=1); only if AdSense script present
+    // minimal app script: filter + search + consent
     (function(){
-      const hasAdSenseScript = !!document.querySelector('script[src*="pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]');
-      const consentKey = 'cookieConsentAds';
-      const bar = document.getElementById('cookieBar');
-      if (hasAdSenseScript && !['accepted','declined'].includes(localStorage.getItem(consentKey))) {
-        bar.style.display = 'block';
-        document.getElementById('acceptCookies').addEventListener('click', () => {
-          localStorage.setItem(consentKey, 'accepted');
-          bar.remove();
-        });
-        document.getElementById('declineCookies').addEventListener('click', () => {
-          localStorage.setItem(consentKey, 'declined');
-          window.adsbygoogle = window.adsbygoogle || [];
-          window.adsbygoogle.requestNonPersonalizedAds = 1; // npa=1
-          bar.remove();
-        });
+      const panels = { text: 'text', image:'image', video:'video', productivity:'productivity' };
+      function show(id){
+        // highlight nav
+        document.querySelectorAll('nav a[data-target]').forEach(a => a.classList.toggle('active', a.dataset.target===id));
+        history.replaceState(null,'', '#'+id);
+        // reveal filter selection as UX hint (we keep all cards visible and let filter handle)
       }
+      document.querySelectorAll('nav a[data-target]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); show(a.dataset.target); }));
+
+      // filter pills
+      const pills = Array.from(document.querySelectorAll('.pill'));
+      const cards = Array.from(document.querySelectorAll('#tools .card'));
+      const countEl = document.getElementById('count');
+
+      function applyFilter(filter){
+        let visible = 0;
+        cards.forEach(c => {
+          const type = c.dataset.type || 'all';
+          const title = (c.dataset.title || '').toLowerCase();
+          const q = (document.getElementById('search').value || '').toLowerCase();
+          const matchFilter = (filter==='all' || type===filter);
+          const matchQuery = !q || title.includes(q);
+          const show = matchFilter && matchQuery;
+          c.style.display = show ? '' : 'none';
+          if(show) visible++;
+        });
+        countEl.textContent = visible;
+      }
+
+      pills.forEach(p => p.addEventListener('click', () => {
+        pills.forEach(x=>x.classList.remove('active'));
+        p.classList.add('active');
+        applyFilter(p.dataset.filter || p.dataset.filter===undefined ? (p.dataset.filter || p.getAttribute('data-filter')) : 'all');
+      }));
+
+      // search
+      document.getElementById('searchBtn').addEventListener('click', () => {
+        const active = document.querySelector('.pill.active')?.dataset.filter || 'all';
+        applyFilter(active);
+      });
+      document.getElementById('search').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('searchBtn').click(); });
+
+      // initial render
+      applyFilter('all');
+
+      // Cookie consent + Ad placeholders
+      const consentKey = 'sk7_ads_consent';
+      const bar = document.getElementById('cookieBar');
+      const adTop = document.getElementById('ad-top');
+      const adBottom = document.getElementById('ad-bottom');
+      const current = localStorage.getItem(consentKey);
+      if(!current){
+        bar.style.display='block';
+      } else {
+        if(current==='accepted') { adTop.style.display='block'; adBottom.style.display='block'; }
+      }
+      document.getElementById('acceptCookies').addEventListener('click', () => {
+        localStorage.setItem(consentKey,'accepted'); bar.remove(); adTop.style.display='block'; adBottom.style.display='block';
+        // If you added the AdSense script commented in head, now you can programmatically load it:
+        // var s = document.createElement('script'); s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX"; s.async=true; s.crossOrigin='anonymous'; document.head.appendChild(s);
+      });
+      document.getElementById('declineCookies').addEventListener('click', () => {
+        localStorage.setItem(consentKey,'declined'); bar.remove();
+        // optional: set non-personalized ad flag if using gpt ads later
+        // window.adsbygoogle = window.adsbygoogle || []; window.adsbygoogle.requestNonPersonalizedAds = 1;
+      });
+
+      // footer year
+      document.getElementById('y').textContent = new Date().getFullYear();
     })();
   </script>
 </body>
